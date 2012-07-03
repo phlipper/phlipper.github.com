@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>phlipper's (dot) net</title>
+  <title>Improved concurrency for Heroku Dynos - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlipper.github.com/">
+  <link rel="canonical" href="http://phlipper.github.com/blog/2012/07/03/improved-concurrency-for-heroku-dynos/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,15 +83,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/07/03/improved-concurrency-for-heroku-dynos/">Improved Concurrency for Heroku Dynos</a></h1>
+      <h1 class="entry-title">Improved Concurrency for Heroku Dynos</h1>
     
     
       <p class="meta">
@@ -114,7 +111,7 @@
   </header>
 
 
-  <div class="entry-content"><p>A Rack application running on <a href="http://heroku.com">Heroku</a> can improve performance by using different application servers with different performance characteristics.</p>
+<div class="entry-content"><p>A Rack application running on <a href="http://heroku.com">Heroku</a> can improve performance by using different application servers with different performance characteristics.</p>
 
 <p>Some good choices include <a href="http://code.macournoyer.com/thin/">Thin</a> (evented I/O), <a href="http://unicorn.bogomips.org/">Unicorn</a> (multi-process) and <a href="http://puma.io/">Puma</a> (multi-threaded).</p>
 
@@ -143,18 +140,51 @@
 
 <p>Use the <a href="https://addons.heroku.com/newrelic">New Relic RPM Add-on</a> to monitor your application resources.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Phil Cohen</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2012-07-03T10:34:00-07:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
   
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlipper.github.com/blog/2012/07/03/improved-concurrency-for-heroku-dynos/" data-via="phlipper" data-counturl="http://phlipper.github.com/blog/2012/07/03/improved-concurrency-for-heroku-dynos/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -171,7 +201,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/phlipper">@phlipper</a> on GitHub
@@ -202,7 +232,7 @@
 <section>
   <h1>Coderwall</h1>
   <ul id="cw_badges">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
 
   <script type="text/javascript">
@@ -259,7 +289,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -275,7 +305,7 @@
 
 <section>
   <h1>My Pinboard</h1>
-  <ul id="pinboard_linkroll">Fetching linkroll&#8230;</ul>
+  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
   <p><a href="http://pinboard.in/u:phlipper">My Pinboard Bookmarks &raquo;</a></p>
 </section>
 <script type="text/javascript">
@@ -294,6 +324,7 @@
 
   
 </aside>
+
 
     </div>
   </div>
