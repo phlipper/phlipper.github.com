@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: macports | phlipper's (dot) net]]></title>
+  <link href="http://phlipper.github.com/blog/categories/macports/atom.xml" rel="self"/>
+  <link href="http://phlipper.github.com/"/>
+  <updated>2012-07-10T22:49:09-07:00</updated>
+  <id>http://phlipper.github.com/</id>
+  <author>
+    <name><![CDATA[Phil Cohen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Fix Ruby 1.9.x OpenSSL Segfault on OS X]]></title>
+    <link href="http://phlipper.github.com/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/"/>
+    <updated>2012-07-10T22:37:00-07:00</updated>
+    <id>http://phlipper.github.com/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x</id>
+    <content type="html"><![CDATA[<p>If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault:</p>
+
+<pre><code>~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] Segmentation fault
+ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.0]
+</code></pre>
+
+<p>The version of OpenSSL that ships with OS X 10.6 and 10.7 is older and causes this issue.</p>
+
+<p>There are a number of options solve this. Here a few:</p>
+
+<p><strong>MacPorts</strong></p>
+
+<pre><code>$ port selfupdate
+$ port install openssl
+$ port install libyaml
+
+# RVM
+$ rvm install 1.9.3 --with-openssl-dir=/opt/local --with-opt-dir=/opt/local
+
+# rbenv
+$ CONFIGURE_OPTS='--with-openssl-dir=/opt/local --with-opt-dir=/opt/local' rbenv install 1.9.3-p194
+</code></pre>
+
+<p><strong>Homebrew</strong></p>
+
+<pre><code>$ brew update
+$ brew install openssl
+
+# RVM
+$ rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
+
+# rbenv
+$ CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl`" rbenv install 1.9.3-p194
+</code></pre>
+
+<p><strong>RVM</strong></p>
+
+<pre><code>$ rvm pkg install openssl
+$ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

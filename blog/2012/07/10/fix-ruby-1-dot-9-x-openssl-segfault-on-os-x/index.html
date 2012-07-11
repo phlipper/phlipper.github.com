@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Improved concurrency for Heroku Dynos - phlipper's (dot) net</title>
+  <title>Fix Ruby 1.9.x OpenSSL Segfault on OS X - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="A Rack application running on Heroku can improve performance by using different application servers with different performance characteristics. Some &hellip;">
+  <meta name="description" content="If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault: ~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlipper.github.com/blog/2012/07/03/improved-concurrency-for-heroku-dynos/">
+  <link rel="canonical" href="http://phlipper.github.com/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -88,7 +88,7 @@
   
   <header>
     
-      <h1 class="entry-title">Improved Concurrency for Heroku Dynos</h1>
+      <h1 class="entry-title">Fix Ruby 1.9.x OpenSSL Segfault on OS X</h1>
     
     
       <p class="meta">
@@ -104,41 +104,53 @@
   
 
 
-<time datetime="2012-07-03T10:34:00-07:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2012</time>
+<time datetime="2012-07-10T22:37:00-07:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>A Rack application running on <a href="http://heroku.com">Heroku</a> can improve performance by using different application servers with different performance characteristics.</p>
+<div class="entry-content"><p>If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault:</p>
 
-<p>Some good choices include <a href="http://code.macournoyer.com/thin/">Thin</a> (evented I/O), <a href="http://unicorn.bogomips.org/">Unicorn</a> (multi-process) and <a href="http://puma.io/">Puma</a> (multi-threaded).</p>
+<pre><code>~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] Segmentation fault
+ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.0]
+</code></pre>
 
-<p>The exact configuration settings will vary by application and how much memory each app takes. A default Rails app with a basic scaffold can easily support 4 unicorn workers or 4 puma threads. A small Sinatra app can support several times that number.</p>
+<p>The version of OpenSSL that ships with OS X 10.6 and 10.7 is older and causes this issue.</p>
 
-<p>Here are the <code>Procfile</code> settings you can use for each:</p>
+<p>There are a number of options solve this. Here a few:</p>
 
-<figure class='code'><figcaption><span>Procfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># thin</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">thin</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span> <span class="o">-</span><span class="n">e</span> <span class="vg">$RACK_ENV</span> <span class="n">start</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># puma</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">puma</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span> <span class="o">-</span><span class="n">b</span> <span class="n">tcp</span><span class="ss">:/</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">:</span><span class="vg">$PORT</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># unicorn</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">unicorn</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span> <span class="o">-</span><span class="n">c</span> <span class="o">.</span><span class="n">/config</span><span class="o">/</span><span class="n">unicorn</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
+<p><strong>MacPorts</strong></p>
 
+<pre><code>$ port selfupdate
+$ port install openssl
+$ port install libyaml
 
-<p>Use the <a href="https://addons.heroku.com/newrelic">New Relic RPM Add-on</a> to monitor your application resources.</p>
+# RVM
+$ rvm install 1.9.3 --with-openssl-dir=/opt/local --with-opt-dir=/opt/local
+
+# rbenv
+$ CONFIGURE_OPTS='--with-openssl-dir=/opt/local --with-opt-dir=/opt/local' rbenv install 1.9.3-p194
+</code></pre>
+
+<p><strong>Homebrew</strong></p>
+
+<pre><code>$ brew update
+$ brew install openssl
+
+# RVM
+$ rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
+
+# rbenv
+$ CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl`" rbenv install 1.9.3-p194
+</code></pre>
+
+<p><strong>RVM</strong></p>
+
+<pre><code>$ rvm pkg install openssl
+$ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
+</code></pre>
 </div>
 
 
@@ -161,12 +173,12 @@
   
 
 
-<time datetime="2012-07-03T10:34:00-07:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2012</time>
+<time datetime="2012-07-10T22:37:00-07:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/puma/'>puma</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/thin/'>thin</a>, <a class='category' href='/blog/categories/unicorn/'>unicorn</a>
+    <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/openssl/'>openssl</a>, <a class='category' href='/blog/categories/rbenv/'>rbenv</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>
   
 </span>
 
@@ -175,7 +187,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlipper.github.com/blog/2012/07/03/improved-concurrency-for-heroku-dynos/" data-via="phlipper" data-counturl="http://phlipper.github.com/blog/2012/07/03/improved-concurrency-for-heroku-dynos/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlipper.github.com/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/" data-via="phlipper" data-counturl="http://phlipper.github.com/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/" >Tweet</a>
   
   
   
@@ -184,8 +196,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/07/03/improved-concurrency-for-heroku-dynos/" title="Previous Post: Improved concurrency for Heroku Dynos">&laquo; Improved concurrency for Heroku Dynos</a>
       
-        <a class="basic-alignment right" href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/" title="Next Post: Fix Ruby 1.9.x OpenSSL Segfault on OS X">Fix Ruby 1.9.x OpenSSL Segfault on OS X &raquo;</a>
       
     </p>
   </footer>

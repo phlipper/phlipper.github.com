@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[phlipper's (dot) net]]></title>
-  <link href="http://phlipper.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: ruby | phlipper's (dot) net]]></title>
+  <link href="http://phlipper.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://phlipper.github.com/"/>
   <updated>2012-07-10T22:49:09-07:00</updated>
   <id>http://phlipper.github.com/</id>
@@ -74,24 +74,20 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
 
 <p>Here are the <code>Procfile</code> settings you can use for each:</p>
 
-<figure class='code'><figcaption><span>Procfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># thin</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">thin</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span> <span class="o">-</span><span class="n">e</span> <span class="vg">$RACK_ENV</span> <span class="n">start</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># puma</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">puma</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span> <span class="o">-</span><span class="n">b</span> <span class="n">tcp</span><span class="ss">:/</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">:</span><span class="vg">$PORT</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># unicorn</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">unicorn</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span> <span class="o">-</span><span class="n">c</span> <span class="o">.</span><span class="n">/config</span><span class="o">/</span><span class="n">unicorn</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>```ruby Procfile</p>
 
+<h1>thin</h1>
+
+<p>web: bundle exec thin -p $PORT -e $RACK_ENV start</p>
+
+<h1>puma</h1>
+
+<p>web: bundle exec puma -t 1:4 -b tcp://0.0.0.0:$PORT</p>
+
+<h1>unicorn</h1>
+
+<p>web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
+```</p>
 
 <p>Use the <a href="https://addons.heroku.com/newrelic">New Relic RPM Add-on</a> to monitor your application resources.</p>
 ]]></content>

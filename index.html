@@ -9,7 +9,7 @@
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="A Rack application running on Heroku can improve performance by using different application servers with different performance characteristics. Some &hellip;">
+  <meta name="description" content="If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault: ~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,6 +91,81 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-10T22:37:00-07:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault:</p>
+
+<pre><code>~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] Segmentation fault
+ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.0]
+</code></pre>
+
+<p>The version of OpenSSL that ships with OS X 10.6 and 10.7 is older and causes this issue.</p>
+
+<p>There are a number of options solve this. Here a few:</p>
+
+<p><strong>MacPorts</strong></p>
+
+<pre><code>$ port selfupdate
+$ port install openssl
+$ port install libyaml
+
+# RVM
+$ rvm install 1.9.3 --with-openssl-dir=/opt/local --with-opt-dir=/opt/local
+
+# rbenv
+$ CONFIGURE_OPTS='--with-openssl-dir=/opt/local --with-opt-dir=/opt/local' rbenv install 1.9.3-p194
+</code></pre>
+
+<p><strong>Homebrew</strong></p>
+
+<pre><code>$ brew update
+$ brew install openssl
+
+# RVM
+$ rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
+
+# rbenv
+$ CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl`" rbenv install 1.9.3-p194
+</code></pre>
+
+<p><strong>RVM</strong></p>
+
+<pre><code>$ rvm pkg install openssl
+$ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/07/03/improved-concurrency-for-heroku-dynos/">Improved Concurrency for Heroku Dynos</a></h1>
     
     
@@ -160,6 +235,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/07/03/improved-concurrency-for-heroku-dynos/">Improved concurrency for Heroku Dynos</a>
