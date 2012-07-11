@@ -3,7 +3,7 @@ layout: post
 title: "Improved concurrency for Heroku Dynos"
 date: 2012-07-03 10:34
 comments: false
-categories:
+categories: puma unicorn thin heroku ruby
 ---
 
 A Rack application running on [Heroku](http://heroku.com) can improve performance by using different application servers with different performance characteristics.
