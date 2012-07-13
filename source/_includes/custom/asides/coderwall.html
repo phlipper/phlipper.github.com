@@ -1,18 +1,23 @@
 <!-- Coderwall badges to render -->
 {% if site.coderwall_user %}
-<section>
-  <h1>Coderwall</h1>
+<section class="well">
+  <ul class="nav">
+    <li class="nav-header">My Coderwall</li>
+  </ul>
+
   <ul id="cw_badges">
     <li class="loading">Status updating...</li>
   </ul>
+
+  <a href="http://coderwall.com/{{site.coderwall_user}}">@{{site.coderwall_user}}</a> on Coderwall
 
   <script type="text/javascript">
     var coderwall = (function(){
       function render(options, badges){
         var fragment = '',
             t = $(options.target),
-            height = 65,
-            width = 65,
+            height = 55,
+            width = 55,
             index;
 
         for (index in badges) {

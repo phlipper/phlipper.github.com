@@ -1,8 +1,11 @@
 {% if site.pinboard_user %}
 <section class="well">
-  <h1>My Pinboard</h1>
+  <ul class="nav">
+    <li class="nav-header">My Pinboard</li>
+  </ul>
+
   <ul id="pinboard_linkroll" class="nav">Fetching linkroll...</ul>
-  <p><a href="http://pinboard.in/u:{{ site.pinboard_user }}">My Pinboard Bookmarks &raquo;</a></p>
+  <p><a href="http://pinboard.in/u:{{ site.pinboard_user }}">@{{ site.pinboard_user }}</a> on Pinboard</p>
 </section>
 <script type="text/javascript">
   var linkroll = 'pinboard_linkroll'; //id target for pinboard list
@@ -16,4 +19,16 @@
     document.getElementsByTagName('head')[0].appendChild(pinboardInit);
   })();
 </script>
+<style type="text/css">
+span.pin-description {
+  display: block;
+}
+a.pin-tag {
+  font-size: small;
+  color: gray;
+}
+#cw_badges {
+  margin: 0 0 9px 15px;
+}
+</style>
 {% endif %}
