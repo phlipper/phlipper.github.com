@@ -9,7 +9,9 @@
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault: ~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] &hellip;">
+  <meta name="description" content="I recently had to reinstall the mysql gem version 2.7 in to following environment: Ruby 1.8.7
+OS X 10.7
+MacPorts MySQL 5 I needed to look up this &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +110,56 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL Gem 2.7 With Ruby 1.8.7 and MacPorts</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-12T13:37:00-07:00" pubdate data-updated="true">Jul 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently had to reinstall the <code>mysql</code> gem version 2.7 in to following environment:</p>
+
+<ul>
+<li>Ruby 1.8.7</li>
+<li>OS X 10.7</li>
+<li>MacPorts MySQL 5</li>
+</ul>
+
+
+<p>I needed to look up this incantation for the Nth time so I am recording it here:</p>
+
+<figure class='code'><figcaption><span>gem install</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install mysql -v 2.7 -- --with-mysql-config<span class="o">=</span>/opt/local/lib/mysql5/bin/mysql_config
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -260,6 +312,10 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL gem 2.7 with Ruby 1.8.7 and MacPorts</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a>
       </li>
     
@@ -310,9 +366,12 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
 
 
 <section class="well">
-  <h1>My Pinboard</h1>
+  <ul class="nav">
+    <li class="nav-header">My Pinboard</li>
+  </ul>
+
   <ul id="pinboard_linkroll" class="nav">Fetching linkroll&#8230;</ul>
-  <p><a href="http://pinboard.in/u:phlipper">My Pinboard Bookmarks &raquo;</a></p>
+  <p><a href="http://pinboard.in/u:phlipper">@phlipper</a> on Pinboard</p>
 </section>
 <script type="text/javascript">
   var linkroll = 'pinboard_linkroll'; //id target for pinboard list
@@ -326,22 +385,39 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
     document.getElementsByTagName('head')[0].appendChild(pinboardInit);
   })();
 </script>
+<style type="text/css">
+span.pin-description {
+  display: block;
+}
+a.pin-tag {
+  font-size: small;
+  color: gray;
+}
+#cw_badges {
+  margin: 0 0 9px 15px;
+}
+</style>
 
 <!-- Coderwall badges to render -->
 
-<section>
-  <h1>Coderwall</h1>
+<section class="well">
+  <ul class="nav">
+    <li class="nav-header">My Coderwall</li>
+  </ul>
+
   <ul id="cw_badges">
     <li class="loading">Status updating&#8230;</li>
   </ul>
+
+  <a href="http://coderwall.com/phlipper">@phlipper</a> on Coderwall
 
   <script type="text/javascript">
     var coderwall = (function(){
       function render(options, badges){
         var fragment = '',
             t = $(options.target),
-            height = 65,
-            width = 65,
+            height = 55,
+            width = 55,
             index;
 
         for (index in badges) {

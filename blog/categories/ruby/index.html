@@ -125,6 +125,22 @@
 <article>
   <div class="well">
 
+<h2><a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL gem 2.7 with Ruby 1.8.7 and MacPorts</a></h2>
+<time datetime="2012-07-12T13:37:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>12</span> <span class='year'>2012</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
+</footer>
+
+</div>
+
+</article>
+
+
+
+<article>
+  <div class="well">
+
 <h2><a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></h2>
 <time datetime="2012-07-10T22:37:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>10</span> <span class='year'>2012</span></time>
 
@@ -162,6 +178,10 @@
     <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL gem 2.7 with Ruby 1.8.7 and MacPorts</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a>
@@ -214,9 +234,12 @@
 
 
 <section class="well">
-  <h1>My Pinboard</h1>
+  <ul class="nav">
+    <li class="nav-header">My Pinboard</li>
+  </ul>
+
   <ul id="pinboard_linkroll" class="nav">Fetching linkroll...</ul>
-  <p><a href="http://pinboard.in/u:phlipper">My Pinboard Bookmarks &raquo;</a></p>
+  <p><a href="http://pinboard.in/u:phlipper">@phlipper</a> on Pinboard</p>
 </section>
 <script type="text/javascript">
   var linkroll = 'pinboard_linkroll'; //id target for pinboard list
@@ -230,22 +253,39 @@
     document.getElementsByTagName('head')[0].appendChild(pinboardInit);
   })();
 </script>
+<style type="text/css">
+span.pin-description {
+  display: block;
+}
+a.pin-tag {
+  font-size: small;
+  color: gray;
+}
+#cw_badges {
+  margin: 0 0 9px 15px;
+}
+</style>
 
 <!-- Coderwall badges to render -->
 
-<section>
-  <h1>Coderwall</h1>
+<section class="well">
+  <ul class="nav">
+    <li class="nav-header">My Coderwall</li>
+  </ul>
+
   <ul id="cw_badges">
     <li class="loading">Status updating...</li>
   </ul>
+
+  <a href="http://coderwall.com/phlipper">@phlipper</a> on Coderwall
 
   <script type="text/javascript">
     var coderwall = (function(){
       function render(options, badges){
         var fragment = '',
             t = $(options.target),
-            height = 65,
-            width = 65,
+            height = 55,
+            width = 55,
             index;
 
         for (index in badges) {

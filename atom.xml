@@ -4,7 +4,7 @@
   <title><![CDATA[phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-07-11T11:08:11-07:00</updated>
+  <updated>2012-07-13T00:53:35-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL gem 2.7 with Ruby 1.8.7 and MacPorts]]></title>
+    <link href="http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/"/>
+    <updated>2012-07-12T13:37:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports</id>
+    <content type="html"><![CDATA[<p>I recently had to reinstall the <code>mysql</code> gem version 2.7 in to following environment:</p>
+
+<ul>
+<li>Ruby 1.8.7</li>
+<li>OS X 10.7</li>
+<li>MacPorts MySQL 5</li>
+</ul>
+
+
+<p>I needed to look up this incantation for the Nth time so I am recording it here:</p>
+
+<figure class='code'><figcaption><span>gem install</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install mysql -v 2.7 -- --with-mysql-config<span class="o">=</span>/opt/local/lib/mysql5/bin/mysql_config
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fix Ruby 1.9.x OpenSSL Segfault on OS X]]></title>

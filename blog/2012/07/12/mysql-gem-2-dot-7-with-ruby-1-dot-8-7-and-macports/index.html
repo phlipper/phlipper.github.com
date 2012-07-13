@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: rvm - phlipper's (dot) net</title>
+  <title>MySQL gem 2.7 with Ruby 1.8.7 and MacPorts - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="Category: rvm">
+  <meta name="description" content="I recently had to reinstall the mysql gem version 2.7 in to following environment: Ruby 1.8.7
+OS X 10.7
+MacPorts MySQL 5 I needed to look up this &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlippers.netblog/categories/rvm">
+  <link rel="canonical" href="http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,38 +109,103 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: Rvm</h1>
+    
+      <h1 class="entry-title">MySQL Gem 2.7 With Ruby 1.8.7 and MacPorts</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-12T13:37:00-07:00" pubdate data-updated="true">Jul 12<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I recently had to reinstall the <code>mysql</code> gem version 2.7 in to following environment:</p>
 
-  
-  <h1>2012</h1>
+<ul>
+<li>Ruby 1.8.7</li>
+<li>OS X 10.7</li>
+<li>MacPorts MySQL 5</li>
+</ul>
 
-<article>
-  <div class="well">
 
-<h2><a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></h2>
-<time datetime="2012-07-10T22:37:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>10</span> <span class='year'>2012</span></time>
+<p>I needed to look up this incantation for the Nth time so I am recording it here:</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/openssl/'>openssl</a>, <a class='category' href='/blog/categories/rbenv/'>rbenv</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a></span>
-</footer>
-
-</div>
-
-</article>
+<figure class='code'><figcaption><span>gem install</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install mysql -v 2.7 -- --with-mysql-config<span class="o">=</span>/opt/local/lib/mysql5/bin/mysql_config
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Phil Cohen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-12T13:37:00-07:00" pubdate data-updated="true">Jul 12<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/" data-via="phlipper" data-counturl="http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/" title="Previous Post:
+        Fix Ruby 1.9.x OpenSSL Segfault on OS X">&laquo; Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">

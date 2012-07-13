@@ -11,11 +11,17 @@
         <lastmod>2012-07-11T11:01:44-07:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/
+        </loc>
+        <lastmod>2012-07-13T00:30:46-07:00</lastmod>
+    </url>
+    <url>
         <loc>http://phlippers.net/blog/archives/</loc>
-        <lastmod>2012-07-11T11:01:44-07:00</lastmod>
+        <lastmod>2012-07-13T00:30:46-07:00</lastmod>
     </url>
     <url>
         <loc>http://phlippers.net/</loc>
-        <lastmod>2012-07-11T11:01:44-07:00</lastmod>
+        <lastmod>2012-07-13T00:30:46-07:00</lastmod>
     </url>
 </urlset>
