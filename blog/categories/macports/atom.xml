@@ -4,7 +4,7 @@
   <title><![CDATA[Category: macports | phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/blog/categories/macports/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-07-13T00:53:35-07:00</updated>
+  <updated>2012-07-16T15:36:50-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Downgrade MacPorts Boost from version 1.50.0 to 1.49.0]]></title>
+    <link href="http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/"/>
+    <updated>2012-07-16T15:27:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0</id>
+    <content type="html"><![CDATA[<p>If you have updated <a href="http://www.boost.org/">Boost</a> to version 1.50.0 via MacPorts, you may have encountered something like the following:</p>
+
+<pre><code>$ port installed | grep mongodb
+  mongodb @2.0.6_0 (active)
+$ port installed | grep boost
+  boost @1.50.0_0 (active)
+$ mongo
+dyld: Symbol not found: __ZNK5boost15program_options16validation_error4whatEv
+  Referenced from: /opt/local/bin/mongo
+  Expected in: /opt/local/lib/libboost_program_options-mt.dylib
+ in /opt/local/bin/mongo
+</code></pre>
+
+<p>There are numerous reports on the MacPorts Trac with various ports that are affected. Here is the solution that worked for me:</p>
+
+<pre><code>$ cd /tmp
+$ svn co  -r 93341 'http://svn.macports.org/repository/macports/trunk/dports/devel/boost/'
+A    boost/files
+A    boost/files/patch-boost-foreach.diff
+A    boost/files/patch-thread_visibility.diff
+A    boost/files/patch-libs-mpi-build-Jamfile.v2.diff
+A    boost/files/patch-tools-build-v2-tools-python-2.jam.diff
+A    boost/files/patch-tools-build-v2-tools-python.jam.diff
+A    boost/files/patch-bootstrap.sh.diff
+A    boost/files/patch-tools_build_v2_engine_src_build.jam.diff
+A    boost/files/patch-libs-python-src-converter-builtin_converters.cpp
+A    boost/files/patch-tools_build_v2_engine_src_build.sh.diff
+A    boost/Portfile
+Checked out revision 93341.
+
+$ cd boost
+$ sudo port install
+---&gt;  Computing dependencies for boost
+---&gt;  Fetching archive for boost
+---&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2 from http://packages.macports.org/boost
+---&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2.rmd160 from http://packages.macports.org/boost
+---&gt;  Installing boost @1.49.0_0
+---&gt;  Deactivating boost @1.50.0_0
+---&gt;  Cleaning boost
+---&gt;  Activating boost @1.49.0_0
+---&gt;  Cleaning boost
+
+$ sudo port activate boost @1.49.0_0
+---&gt;  Computing dependencies for boost
+---&gt;  Cleaning boost
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL gem 2.7 with Ruby 1.8.7 and MacPorts]]></title>

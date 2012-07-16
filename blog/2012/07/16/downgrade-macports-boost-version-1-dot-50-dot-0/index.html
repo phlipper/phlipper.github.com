@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ruby - phlipper's (dot) net</title>
+  <title>Downgrade MacPorts Boost from version 1.50.0 to 1.49.0 - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="Category: ruby">
+  <meta name="description" content="If you have updated Boost to version 1.50.0 via MacPorts, you may have encountered something like the following: $ port installed | grep mongodb &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlippers.netblog/categories/ruby">
+  <link rel="canonical" href="http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,70 +107,134 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: Ruby</h1>
+    
+      <h1 class="entry-title">Downgrade MacPorts Boost From Version 1.50.0 to 1.49.0</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-16T15:27:00-07:00" pubdate data-updated="true">Jul 16<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
+
+
+<div class="entry-content"><p>If you have updated <a href="http://www.boost.org/">Boost</a> to version 1.50.0 via MacPorts, you may have encountered something like the following:</p>
+
+<pre><code>$ port installed | grep mongodb
+  mongodb @2.0.6_0 (active)
+$ port installed | grep boost
+  boost @1.50.0_0 (active)
+$ mongo
+dyld: Symbol not found: __ZNK5boost15program_options16validation_error4whatEv
+  Referenced from: /opt/local/bin/mongo
+  Expected in: /opt/local/lib/libboost_program_options-mt.dylib
+ in /opt/local/bin/mongo
+</code></pre>
+
+<p>There are numerous reports on the MacPorts Trac with various ports that are affected. Here is the solution that worked for me:</p>
+
+<pre><code>$ cd /tmp
+$ svn co  -r 93341 'http://svn.macports.org/repository/macports/trunk/dports/devel/boost/'
+A    boost/files
+A    boost/files/patch-boost-foreach.diff
+A    boost/files/patch-thread_visibility.diff
+A    boost/files/patch-libs-mpi-build-Jamfile.v2.diff
+A    boost/files/patch-tools-build-v2-tools-python-2.jam.diff
+A    boost/files/patch-tools-build-v2-tools-python.jam.diff
+A    boost/files/patch-bootstrap.sh.diff
+A    boost/files/patch-tools_build_v2_engine_src_build.jam.diff
+A    boost/files/patch-libs-python-src-converter-builtin_converters.cpp
+A    boost/files/patch-tools_build_v2_engine_src_build.sh.diff
+A    boost/Portfile
+Checked out revision 93341.
+
+$ cd boost
+$ sudo port install
+---&gt;  Computing dependencies for boost
+---&gt;  Fetching archive for boost
+---&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2 from http://packages.macports.org/boost
+---&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2.rmd160 from http://packages.macports.org/boost
+---&gt;  Installing boost @1.49.0_0
+---&gt;  Deactivating boost @1.50.0_0
+---&gt;  Cleaning boost
+---&gt;  Activating boost @1.49.0_0
+---&gt;  Cleaning boost
+
+$ sudo port activate boost @1.49.0_0
+---&gt;  Computing dependencies for boost
+---&gt;  Cleaning boost
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <div id="blog-archives" class="category">
+
+<span class="byline author vcard">Posted by <span class="fn">Phil Cohen</span></span>
+
+      
+
+
+
+
+
 
 
 
   
-  <h1>2012</h1>
-
-<article>
-  <div class="well">
-
-<h2><a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL gem 2.7 with Ruby 1.8.7 and MacPorts</a></h2>
-<time datetime="2012-07-12T13:37:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>12</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
-
-</div>
-
-</article>
 
 
+<time datetime="2012-07-16T15:27:00-07:00" pubdate data-updated="true">Jul 16<span>th</span>, 2012</time>
+      
 
-<article>
-  <div class="well">
-
-<h2><a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></h2>
-<time datetime="2012-07-10T22:37:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>10</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/openssl/'>openssl</a>, <a class='category' href='/blog/categories/rbenv/'>rbenv</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a></span>
-</footer>
-
-</div>
-
-</article>
-
-
-
-<article>
-  <div class="well">
-
-<h2><a href="/blog/2012/07/03/improved-concurrency-for-heroku-dynos/">Improved concurrency for Heroku Dynos</a></h2>
-<time datetime="2012-07-03T10:34:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>03</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/puma/'>puma</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/thin/'>thin</a>, <a class='category' href='/blog/categories/unicorn/'>unicorn</a></span>
-</footer>
-
-</div>
-
-</article>
-
-</div>
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/osx/'>osx</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/" data-via="phlipper" data-counturl="http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/" title="Previous Post:
+        MySQL gem 2.7 with Ruby 1.8.7 and MacPorts">&laquo; MySQL gem 2.7 with Ruby 1.8.7 and MacPorts</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">

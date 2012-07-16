@@ -9,9 +9,7 @@
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="I recently had to reinstall the mysql gem version 2.7 in to following environment: Ruby 1.8.7
-OS X 10.7
-MacPorts MySQL 5 I needed to look up this &hellip;">
+  <meta name="description" content="If you have updated Boost to version 1.50.0 via MacPorts, you may have encountered something like the following: $ port installed | grep mongodb &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,6 +108,87 @@ MacPorts MySQL 5 I needed to look up this &hellip;">
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/">Downgrade MacPorts Boost From Version 1.50.0 to 1.49.0</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-16T15:27:00-07:00" pubdate data-updated="true">Jul 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you have updated <a href="http://www.boost.org/">Boost</a> to version 1.50.0 via MacPorts, you may have encountered something like the following:</p>
+
+<pre><code>$ port installed | grep mongodb
+  mongodb @2.0.6_0 (active)
+$ port installed | grep boost
+  boost @1.50.0_0 (active)
+$ mongo
+dyld: Symbol not found: __ZNK5boost15program_options16validation_error4whatEv
+  Referenced from: /opt/local/bin/mongo
+  Expected in: /opt/local/lib/libboost_program_options-mt.dylib
+ in /opt/local/bin/mongo
+</code></pre>
+
+<p>There are numerous reports on the MacPorts Trac with various ports that are affected. Here is the solution that worked for me:</p>
+
+<pre><code>$ cd /tmp
+$ svn co  -r 93341 'http://svn.macports.org/repository/macports/trunk/dports/devel/boost/'
+A    boost/files
+A    boost/files/patch-boost-foreach.diff
+A    boost/files/patch-thread_visibility.diff
+A    boost/files/patch-libs-mpi-build-Jamfile.v2.diff
+A    boost/files/patch-tools-build-v2-tools-python-2.jam.diff
+A    boost/files/patch-tools-build-v2-tools-python.jam.diff
+A    boost/files/patch-bootstrap.sh.diff
+A    boost/files/patch-tools_build_v2_engine_src_build.jam.diff
+A    boost/files/patch-libs-python-src-converter-builtin_converters.cpp
+A    boost/files/patch-tools_build_v2_engine_src_build.sh.diff
+A    boost/Portfile
+Checked out revision 93341.
+
+$ cd boost
+$ sudo port install
+---&gt;  Computing dependencies for boost
+---&gt;  Fetching archive for boost
+---&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2 from http://packages.macports.org/boost
+---&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2.rmd160 from http://packages.macports.org/boost
+---&gt;  Installing boost @1.49.0_0
+---&gt;  Deactivating boost @1.50.0_0
+---&gt;  Cleaning boost
+---&gt;  Activating boost @1.49.0_0
+---&gt;  Cleaning boost
+
+$ sudo port activate boost @1.49.0_0
+---&gt;  Computing dependencies for boost
+---&gt;  Cleaning boost
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -310,6 +389,10 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
     <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/">Downgrade MacPorts Boost from version 1.50.0 to 1.49.0</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL gem 2.7 with Ruby 1.8.7 and MacPorts</a>
