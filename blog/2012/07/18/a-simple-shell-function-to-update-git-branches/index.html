@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: osx - phlipper's (dot) net</title>
+  <title>A simple shell function to update git branches - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="Category: osx">
+  <meta name="description" content="A client of mine was having a hard time remembering the project workflow to keep topic branches updated, so I put together this simple shell function &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlippers.netblog/categories/osx">
+  <link rel="canonical" href="http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,54 +107,127 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: Osx</h1>
+    
+      <h1 class="entry-title">A Simple Shell Function to Update Git Branches</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-18T16:17:00-07:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>A client of mine was having a hard time remembering the project workflow to keep topic branches updated, so I put together this simple shell function as a workflow reference:</p>
 
-  
-  <h1>2012</h1>
+<figure class='code'><figcaption><span>git-sync-master</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">function </span>git-sync-master<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git checkout master <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git fetch origin <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git pull origin master <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git checkout <span class="nv">$1</span> <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git rebase master
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<article>
-  <div class="well">
 
-<h2><a href="/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/">Downgrade MacPorts Boost from version 1.50.0 to 1.49.0</a></h2>
-<time datetime="2012-07-16T15:27:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>16</span> <span class='year'>2012</span></time>
+<p>As written, that could be added to a <code>~/.bash_profile</code> or similar location allowing you to run something like:</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/osx/'>osx</a></span>
-</footer>
+<pre><code>$ cd myproject
+$ git-sync-master mybranch
+</code></pre>
 
+<p>Taking this one step further, you can &#8220;integrate&#8221; this command in to git with the following minor modifications:</p>
+
+<pre><code>$ cat &gt; ~/bin/git-sync-master
+git checkout master &amp;&amp;
+  git fetch origin &amp;&amp;
+  git pull origin master &amp;&amp;
+  git checkout $1 &amp;&amp;
+  git rebase master
+^D
+
+$ chmod +x ~/bin/git-sync-master
+$ cd myproject
+$ git sync-master mybranch
+</code></pre>
 </div>
 
-</article>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Phil Cohen</span></span>
+
+      
 
 
 
-<article>
-  <div class="well">
 
-<h2><a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL gem 2.7 with Ruby 1.8.7 and MacPorts</a></h2>
-<time datetime="2012-07-12T13:37:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>12</span> <span class='year'>2012</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
 
-</div>
 
-</article>
-
-</div>
 
   
+
+
+<time datetime="2012-07-18T16:17:00-07:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/shell/'>shell</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/" data-via="phlipper" data-counturl="http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/" title="Previous Post:
+        Downgrade MacPorts Boost from version 1.50.0 to 1.49.0">&laquo; Downgrade MacPorts Boost from version 1.50.0 to 1.49.0</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">

@@ -9,7 +9,7 @@
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="If you have updated Boost to version 1.50.0 via MacPorts, you may have encountered something like the following: $ port installed | grep mongodb &hellip;">
+  <meta name="description" content="A client of mine was having a hard time remembering the project workflow to keep topic branches updated, so I put together this simple shell function &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +108,80 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/">A Simple Shell Function to Update Git Branches</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-18T16:17:00-07:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A client of mine was having a hard time remembering the project workflow to keep topic branches updated, so I put together this simple shell function as a workflow reference:</p>
+
+<figure class='code'><figcaption><span>git-sync-master</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">function </span>git-sync-master<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git checkout master <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git fetch origin <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git pull origin master <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git checkout <span class="nv">$1</span> <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git rebase master
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As written, that could be added to a <code>~/.bash_profile</code> or similar location allowing you to run something like:</p>
+
+<pre><code>$ cd myproject
+$ git-sync-master mybranch
+</code></pre>
+
+<p>Taking this one step further, you can &#8220;integrate&#8221; this command in to git with the following minor modifications:</p>
+
+<pre><code>$ cat &gt; ~/bin/git-sync-master
+git checkout master &amp;&amp;
+  git fetch origin &amp;&amp;
+  git pull origin master &amp;&amp;
+  git checkout $1 &amp;&amp;
+  git rebase master
+^D
+
+$ chmod +x ~/bin/git-sync-master
+$ cd myproject
+$ git sync-master mybranch
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -389,6 +463,10 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
     <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/">A simple shell function to update git branches</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/">Downgrade MacPorts Boost from version 1.50.0 to 1.49.0</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-07-16T15:36:50-07:00</updated>
+  <updated>2012-07-18T16:40:46-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A simple shell function to update git branches]]></title>
+    <link href="http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/"/>
+    <updated>2012-07-18T16:17:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches</id>
+    <content type="html"><![CDATA[<p>A client of mine was having a hard time remembering the project workflow to keep topic branches updated, so I put together this simple shell function as a workflow reference:</p>
+
+<figure class='code'><figcaption><span>git-sync-master</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">function </span>git-sync-master<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git checkout master <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git fetch origin <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git pull origin master <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git checkout <span class="nv">$1</span> <span class="o">&amp;&amp;</span>
+</span><span class='line'>    git rebase master
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As written, that could be added to a <code>~/.bash_profile</code> or similar location allowing you to run something like:</p>
+
+<pre><code>$ cd myproject
+$ git-sync-master mybranch
+</code></pre>
+
+<p>Taking this one step further, you can &#8220;integrate&#8221; this command in to git with the following minor modifications:</p>
+
+<pre><code>$ cat &gt; ~/bin/git-sync-master
+git checkout master &amp;&amp;
+  git fetch origin &amp;&amp;
+  git pull origin master &amp;&amp;
+  git checkout $1 &amp;&amp;
+  git rebase master
+^D
+
+$ chmod +x ~/bin/git-sync-master
+$ cd myproject
+$ git sync-master mybranch
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Downgrade MacPorts Boost from version 1.50.0 to 1.49.0]]></title>
