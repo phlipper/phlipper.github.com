@@ -4,7 +4,7 @@
   <title><![CDATA[phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-07-19T10:13:15-07:00</updated>
+  <updated>2012-07-19T10:28:57-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Support the Internet Defense League]]></title>
+    <link href="http://phlippers.net/blog/2012/07/19/support-the-internet-defense-league/"/>
+    <updated>2012-07-19T10:27:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/07/19/support-the-internet-defense-league</id>
+    <content type="html"><![CDATA[<p>The <a href="http://internetdefenseleague.org/">Internet Defense League</a> is a network of people and sites who use their massive combined reach to defend the open internet and make it better. Because it can sound the alarm quickly to millions of users, people are calling it “a bat-signal for the Internet”.</p>
+
+<p>The Internet Defense League takes the tactic that killed SOPA &amp; PIPA and turns it into a permanent force for defending the internet, and making it better. Think of it like the internet&#8217;s Emergency Broadcast System, or its bat signal!</p>
+
+<p>The Internet Blackout was just the beginning. Together, our websites and personal networks can mobilize the planet to defend the internet from bad laws &amp; monopolies. <a href="http://internetdefenseleague.org/">Are you in</a>?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A simple shell function to update git branches]]></title>
