@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-07-19T10:28:57-07:00</updated>
+  <updated>2012-07-25T23:30:49-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Upgrading to Mountain Lion - Ruby + MacPorts]]></title>
+    <link href="http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/"/>
+    <updated>2012-07-25T23:25:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports</id>
+    <content type="html"><![CDATA[<p>My colleague Kenny Johnston wrote a nice piece about <a href="http://coderwall.com/p/dtbuqg">Upgrading to Mountain Lion</a> with an emphasis on using Homebrew. Here are the relevant steps using MacPorts:</p>
+
+<h2>XCode:</h2>
+
+<ul>
+<li>Update to the latest XCode 4.4 from the App Store</li>
+<li>Install the Command Line Tools</li>
+</ul>
+
+
+<p>Of course, since it is zero-day, there was an issue fetching the Command Line Tools from the server and I had to install manually from a <code>.pkg</code> file retrieved from the Apple Developer Portal. If you install the CLI tools package manually, you may need to run the following:</p>
+
+<pre><code>sudo xcodebuild -license
+</code></pre>
+
+<p>That is required to accept the license terms system-wide.</p>
+
+<h2>MacPorts</h2>
+
+<p>First, you'll need to update the base MacPorts installation:</p>
+
+<pre><code>sudo port -v selfupdate
+</code></pre>
+
+<p>If you run in to a compilation error, you may need to edit the file <code>/opt/local/etc/macports/macports.conf</code> and set the <code>developer_dir</code> option to be empty:</p>
+
+<pre><code>sudo vim /opt/local/etc/macports/macports.conf
+</code></pre>
+
+<p>```bash /opt/local/etc/macports/macports.conf</p>
+
+<h1>Directory containing Xcode Tools (default is to ask xcode-select)</h1>
+
+<h1>developer_dir       /Developer</h1>
+
+<p>developer_dir
+```</p>
+
+<p>You should now be able to update any outdated ports (grab a beverage while you wait):</p>
+
+<pre><code>sudo port -vu upgrade outdated
+</code></pre>
+
+<h2>GCC 4.2</h2>
+
+<p>Now install the <code>apple-gcc42</code> port to replace the missing GCC 4.2 in Mountain Lion:</p>
+
+<pre><code>sudo port install -vu apple-gcc42
+</code></pre>
+
+<p>Once that has been installed, you will need to link it to the expected system location:</p>
+
+<pre><code>sudo ln -s /opt/local/bin/gcc-apple-4.2 /usr/bin/gcc-4.2
+</code></pre>
+
+<h2>RVM</h2>
+
+<p>Make sure you have the latest RVM version installed:</p>
+
+<pre><code>curl -L https://get.rvm.io | bash -s stable
+</code></pre>
+
+<p>You should now ensure that you can rebuild your installed Ruby versions:</p>
+
+<pre><code>rvm reinstall 1.9.3
+rvm reinstall rbx
+...
+</code></pre>
+
+<p>You may need to reference my earlier tip: <a href="http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL gem 2.7 with Ruby 1.8.7 and MacPorts]]></title>

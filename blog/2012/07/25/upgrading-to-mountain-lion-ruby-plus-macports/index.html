@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: rvm - phlipper's (dot) net</title>
+  <title>Upgrading to Mountain Lion - Ruby + MacPorts - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="Category: rvm">
+  <meta name="description" content="My colleague Kenny Johnston wrote a nice piece about Upgrading to Mountain Lion with an emphasis on using Homebrew. Here are the relevant steps using &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlippers.netblog/categories/rvm">
+  <link rel="canonical" href="http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,54 +107,158 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: Rvm</h1>
+    
+      <h1 class="entry-title">Upgrading to Mountain Lion - Ruby + MacPorts</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-25T23:25:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>My colleague Kenny Johnston wrote a nice piece about <a href="http://coderwall.com/p/dtbuqg">Upgrading to Mountain Lion</a> with an emphasis on using Homebrew. Here are the relevant steps using MacPorts:</p>
 
-  
-  <h1>2012</h1>
+<h2>XCode:</h2>
 
-<article>
-  <div class="well">
+<ul>
+<li>Update to the latest XCode 4.4 from the App Store</li>
+<li>Install the Command Line Tools</li>
+</ul>
 
-<h2><a href="/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/">Upgrading to Mountain Lion - Ruby + MacPorts</a></h2>
-<time datetime="2012-07-25T23:25:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>25</span> <span class='year'>2012</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a></span>
-</footer>
+<p>Of course, since it is zero-day, there was an issue fetching the Command Line Tools from the server and I had to install manually from a <code>.pkg</code> file retrieved from the Apple Developer Portal. If you install the CLI tools package manually, you may need to run the following:</p>
 
+<pre><code>sudo xcodebuild -license
+</code></pre>
+
+<p>That is required to accept the license terms system-wide.</p>
+
+<h2>MacPorts</h2>
+
+<p>First, you&#8217;ll need to update the base MacPorts installation:</p>
+
+<pre><code>sudo port -v selfupdate
+</code></pre>
+
+<p>If you run in to a compilation error, you may need to edit the file <code>/opt/local/etc/macports/macports.conf</code> and set the <code>developer_dir</code> option to be empty:</p>
+
+<pre><code>sudo vim /opt/local/etc/macports/macports.conf
+</code></pre>
+
+<figure class='code'><figcaption><span>/opt/local/etc/macports/macports.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Directory containing Xcode Tools (default is to ask xcode-select)</span>
+</span><span class='line'><span class="c">#developer_dir       /Developer</span>
+</span><span class='line'>developer_dir
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You should now be able to update any outdated ports (grab a beverage while you wait):</p>
+
+<pre><code>sudo port -vu upgrade outdated
+</code></pre>
+
+<h2>GCC 4.2</h2>
+
+<p>Now install the <code>apple-gcc42</code> port to replace the missing GCC 4.2 in Mountain Lion:</p>
+
+<pre><code>sudo port install -vu apple-gcc42
+</code></pre>
+
+<p>Once that has been installed, you will need to link it to the expected system location:</p>
+
+<pre><code>sudo ln -s /opt/local/bin/gcc-apple-4.2 /usr/bin/gcc-4.2
+</code></pre>
+
+<h2>RVM</h2>
+
+<p>Make sure you have the latest RVM version installed:</p>
+
+<pre><code>curl -L https://get.rvm.io | bash -s stable
+</code></pre>
+
+<p>You should now ensure that you can rebuild your installed Ruby versions:</p>
+
+<pre><code>rvm reinstall 1.9.3
+rvm reinstall rbx
+...
+</code></pre>
+
+<p>You may need to reference my earlier tip: <a href="http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></p>
 </div>
 
-</article>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Phil Cohen</span></span>
+
+      
 
 
 
-<article>
-  <div class="well">
 
-<h2><a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></h2>
-<time datetime="2012-07-10T22:37:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>10</span> <span class='year'>2012</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/openssl/'>openssl</a>, <a class='category' href='/blog/categories/rbenv/'>rbenv</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a></span>
-</footer>
 
-</div>
 
-</article>
-
-</div>
 
   
+
+
+<time datetime="2012-07-25T23:25:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/" data-via="phlipper" data-counturl="http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/07/19/support-the-internet-defense-league/" title="Previous Post:
+        Support the Internet Defense League">&laquo; Support the Internet Defense League</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">
