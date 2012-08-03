@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>phlipper's (dot) net</title>
+  <title>Install PostgreSQL 9.2 on OS X Mountain Lion - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlippers.net">
+  <link rel="canonical" href="http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -106,15 +106,13 @@
 </nav>
   <div class="container">
     <div class="row-fluid">
-      <div class="span9">
-  
-  
-  
-    <article>
       
+<article class="hentry span9" role="article">
+
+  
   <header class="page-header">
     
-      <h1 class="entry-title"><a href="/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/">Install PostgreSQL 9.2 on OS X Mountain Lion</a></h1>
+      <h1 class="entry-title">Install PostgreSQL 9.2 on OS X Mountain Lion</h1>
     
     
       <p class="meta">
@@ -137,7 +135,7 @@
   </header>
 
 
-  <div class="entry-content"><p>The <a href="http://www.postgresql.org">PostgreSQL</a> database keeps getting better with each release. With 9.2 now at beta2, it&#8217;s a great time to jump in and get up to speed.</p>
+<div class="entry-content"><p>The <a href="http://www.postgresql.org">PostgreSQL</a> database keeps getting better with each release. With 9.2 now at beta2, it&#8217;s a great time to jump in and get up to speed.</p>
 
 <h2>Prerequisites</h2>
 
@@ -295,127 +293,16 @@ $ sudo su postgres -c '/opt/local/lib/postgresql92/bin/initdb -D /opt/local/var/
 
 <p>Everything should now be running smoothly.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/">Upgrading to Mountain Lion - Ruby + MacPorts</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Phil Cohen</span></span>
 
-<time datetime="2012-07-25T23:25:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My colleague Kenny Johnston wrote a nice piece about <a href="http://coderwall.com/p/dtbuqg">Upgrading to Mountain Lion</a> with an emphasis on using Homebrew. Here are the relevant steps using MacPorts:</p>
-
-<h2>XCode:</h2>
-
-<ul>
-<li>Update to the latest XCode 4.4 from the App Store</li>
-<li>Install the Command Line Tools</li>
-</ul>
-
-
-<p>Of course, since it is zero-day, there was an issue fetching the Command Line Tools from the server and I had to install manually from a <code>.pkg</code> file retrieved from the Apple Developer Portal. If you install the CLI tools package manually, you may need to run the following:</p>
-
-<pre><code>sudo xcodebuild -license
-</code></pre>
-
-<p>That is required to accept the license terms system-wide.</p>
-
-<h2>MacPorts</h2>
-
-<p>First, you&#8217;ll need to update the base MacPorts installation:</p>
-
-<pre><code>sudo port -v selfupdate
-</code></pre>
-
-<p>If you run in to a compilation error, you may need to edit the file <code>/opt/local/etc/macports/macports.conf</code> and set the <code>developer_dir</code> option to be empty:</p>
-
-<pre><code>sudo vim /opt/local/etc/macports/macports.conf
-</code></pre>
-
-<figure class='code'><figcaption><span>/opt/local/etc/macports/macports.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Directory containing Xcode Tools (default is to ask xcode-select)</span>
-</span><span class='line'><span class="c">#developer_dir       /Developer</span>
-</span><span class='line'>developer_dir
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You should now be able to update any outdated ports (grab a beverage while you wait):</p>
-
-<pre><code>sudo port -vu upgrade outdated
-</code></pre>
-
-<h2>GCC 4.2</h2>
-
-<p>Now install the <code>apple-gcc42</code> port to replace the missing GCC 4.2 in Mountain Lion:</p>
-
-<pre><code>sudo port install -vu apple-gcc42
-</code></pre>
-
-<p>Once that has been installed, you will need to link it to the expected system location:</p>
-
-<pre><code>sudo ln -s /opt/local/bin/gcc-apple-4.2 /usr/bin/gcc-4.2
-</code></pre>
-
-<h2>RVM</h2>
-
-<p>Make sure you have the latest RVM version installed:</p>
-
-<pre><code>curl -L https://get.rvm.io | bash -s stable
-</code></pre>
-
-<p>You should now ensure that you can rebuild your installed Ruby versions:</p>
-
-<pre><code>rvm reinstall 1.9.3
-rvm reinstall rbx
-...
-</code></pre>
-
-<p>You may need to reference my earlier tip: <a href="http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/19/support-the-internet-defense-league/">Support the Internet Defense League</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -427,374 +314,40 @@ rvm reinstall rbx
   
 
 
-<time datetime="2012-07-19T10:27:00-07:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <a href="http://internetdefenseleague.org/">Internet Defense League</a> is a network of people and sites who use their massive combined reach to defend the open internet and make it better. Because it can sound the alarm quickly to millions of users, people are calling it “a bat-signal for the Internet”.</p>
-
-<p>The Internet Defense League takes the tactic that killed SOPA &amp; PIPA and turns it into a permanent force for defending the internet, and making it better. Think of it like the internet&#8217;s Emergency Broadcast System, or its bat signal!</p>
-
-<p>The Internet Blackout was just the beginning. Together, our websites and personal networks can mobilize the planet to defend the internet from bad laws &amp; monopolies. <a href="http://internetdefenseleague.org/">Are you in</a>?</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-08-03T13:08:00-07:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2012</time>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/">A Simple Shell Function to Update Git Branches</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/postgresql/'>postgresql</a>
+  
+</span>
 
 
-<time datetime="2012-07-18T16:17:00-07:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>A client of mine was having a hard time remembering the project workflow to keep topic branches updated, so I put together this simple shell function as a workflow reference:</p>
-
-<figure class='code'><figcaption><span>git-sync-master</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">function </span>git-sync-master<span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>  git checkout master <span class="o">&amp;&amp;</span>
-</span><span class='line'>    git fetch origin <span class="o">&amp;&amp;</span>
-</span><span class='line'>    git pull origin master <span class="o">&amp;&amp;</span>
-</span><span class='line'>    git checkout <span class="nv">$1</span> <span class="o">&amp;&amp;</span>
-</span><span class='line'>    git rebase master
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As written, that could be added to a <code>~/.bash_profile</code> or similar location allowing you to run something like:</p>
-
-<pre><code>$ cd myproject
-$ git-sync-master mybranch
-</code></pre>
-
-<p>Taking this one step further, you can &#8220;integrate&#8221; this command in to git with the following minor modifications:</p>
-
-<pre><code>$ cat &gt; ~/bin/git-sync-master
-git checkout master &amp;&amp;
-  git fetch origin &amp;&amp;
-  git pull origin master &amp;&amp;
-  git checkout $1 &amp;&amp;
-  git rebase master
-^D
-
-$ chmod +x ~/bin/git-sync-master
-$ cd myproject
-$ git sync-master mybranch
-</code></pre>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/" data-via="phlipper" data-counturl="http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    
+    <ul class="pager">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/">Downgrade MacPorts Boost From Version 1.50.0 to 1.49.0</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-16T15:27:00-07:00" pubdate data-updated="true">Jul 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you have updated <a href="http://www.boost.org/">Boost</a> to version 1.50.0 via MacPorts, you may have encountered something like the following:</p>
-
-<pre><code>$ port installed | grep mongodb
-  mongodb @2.0.6_0 (active)
-$ port installed | grep boost
-  boost @1.50.0_0 (active)
-$ mongo
-dyld: Symbol not found: __ZNK5boost15program_options16validation_error4whatEv
-  Referenced from: /opt/local/bin/mongo
-  Expected in: /opt/local/lib/libboost_program_options-mt.dylib
- in /opt/local/bin/mongo
-</code></pre>
-
-<p>There are numerous reports on the MacPorts Trac with various ports that are affected. Here is the solution that worked for me:</p>
-
-<pre><code>$ cd /tmp
-$ svn co  -r 93341 'http://svn.macports.org/repository/macports/trunk/dports/devel/boost/'
-A    boost/files
-A    boost/files/patch-boost-foreach.diff
-A    boost/files/patch-thread_visibility.diff
-A    boost/files/patch-libs-mpi-build-Jamfile.v2.diff
-A    boost/files/patch-tools-build-v2-tools-python-2.jam.diff
-A    boost/files/patch-tools-build-v2-tools-python.jam.diff
-A    boost/files/patch-bootstrap.sh.diff
-A    boost/files/patch-tools_build_v2_engine_src_build.jam.diff
-A    boost/files/patch-libs-python-src-converter-builtin_converters.cpp
-A    boost/files/patch-tools_build_v2_engine_src_build.sh.diff
-A    boost/Portfile
-Checked out revision 93341.
-
-$ cd boost
-$ sudo port install
----&gt;  Computing dependencies for boost
----&gt;  Fetching archive for boost
----&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2 from http://packages.macports.org/boost
----&gt;  Attempting to fetch boost-1.49.0_0.darwin_10.x86_64.tbz2.rmd160 from http://packages.macports.org/boost
----&gt;  Installing boost @1.49.0_0
----&gt;  Deactivating boost @1.50.0_0
----&gt;  Cleaning boost
----&gt;  Activating boost @1.49.0_0
----&gt;  Cleaning boost
-
-$ sudo port activate boost @1.49.0_0
----&gt;  Computing dependencies for boost
----&gt;  Cleaning boost
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/" title="Previous Post:
+        Upgrading to Mountain Lion - Ruby + MacPorts">&laquo; Upgrading to Mountain Lion - Ruby + MacPorts</a></li>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/">MySQL Gem 2.7 With Ruby 1.8.7 and MacPorts</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-12T13:37:00-07:00" pubdate data-updated="true">Jul 12<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I recently had to reinstall the <code>mysql</code> gem version 2.7 in to following environment:</p>
-
-<ul>
-<li>Ruby 1.8.7</li>
-<li>OS X 10.7</li>
-<li>MacPorts MySQL 5</li>
-</ul>
-
-
-<p>I needed to look up this incantation for the Nth time so I am recording it here:</p>
-
-<figure class='code'><figcaption><span>gem install</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install mysql -v 2.7 -- --with-mysql-config<span class="o">=</span>/opt/local/lib/mysql5/bin/mysql_config
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+      <li><a href="/blog/archives">Blog Archives</a></li>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/">Fix Ruby 1.9.x OpenSSL Segfault on OS X</a></h1>
-    
-    
-      <p class="meta">
-        
+    </ul>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-10T22:37:00-07:00" pubdate data-updated="true">Jul 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault:</p>
-
-<pre><code>~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] Segmentation fault
-ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.0]
-</code></pre>
-
-<p>The version of OpenSSL that ships with OS X 10.6 and 10.7 is older and causes this issue.</p>
-
-<p>There are a number of options solve this. Here a few:</p>
-
-<p><strong>MacPorts</strong></p>
-
-<pre><code>$ port selfupdate
-$ port install openssl
-$ port install libyaml
-
-# RVM
-$ rvm install 1.9.3 --with-openssl-dir=/opt/local --with-opt-dir=/opt/local
-
-# rbenv
-$ CONFIGURE_OPTS='--with-openssl-dir=/opt/local --with-opt-dir=/opt/local' rbenv install 1.9.3-p194
-</code></pre>
-
-<p><strong>Homebrew</strong></p>
-
-<pre><code>$ brew update
-$ brew install openssl
-
-# RVM
-$ rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
-
-# rbenv
-$ CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl`" rbenv install 1.9.3-p194
-</code></pre>
-
-<p><strong>RVM</strong></p>
-
-<pre><code>$ rvm pkg install openssl
-$ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/03/improved-concurrency-for-heroku-dynos/">Improved Concurrency for Heroku Dynos</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-03T10:34:00-07:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A Rack application running on <a href="http://heroku.com">Heroku</a> can improve performance by using different application servers with different performance characteristics.</p>
-
-<p>Some good choices include <a href="http://code.macournoyer.com/thin/">Thin</a> (evented I/O), <a href="http://unicorn.bogomips.org/">Unicorn</a> (multi-process) and <a href="http://puma.io/">Puma</a> (multi-threaded).</p>
-
-<p>The exact configuration settings will vary by application and how much memory each app takes. A default Rails app with a basic scaffold can easily support 4 unicorn workers or 4 puma threads. A small Sinatra app can support several times that number.</p>
-
-<p>Here are the <code>Procfile</code> settings you can use for each:</p>
-
-<figure class='code'><figcaption><span>Procfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># thin</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">thin</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span> <span class="o">-</span><span class="n">e</span> <span class="vg">$RACK_ENV</span> <span class="n">start</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># puma</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">puma</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span> <span class="o">-</span><span class="n">b</span> <span class="n">tcp</span><span class="ss">:/</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">:</span><span class="vg">$PORT</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># unicorn</span>
-</span><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">unicorn</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span> <span class="o">-</span><span class="n">c</span> <span class="o">.</span><span class="n">/config</span><span class="o">/</span><span class="n">unicorn</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Use the <a href="https://addons.heroku.com/newrelic">New Relic RPM Add-on</a> to monitor your application resources.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <ul class="pager">
-    
-    <li><a href="/blog/archives">Blog Archives</a></li>
-    
-  </ul>
-</div>
 <aside class="sidebar-nav span3">
   
     <section class="well">
@@ -827,7 +380,7 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
 <section class="well">
   <ul id="gh_repos" class="nav">
     <li class="nav-header">GitHub Repos</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/phlipper">@phlipper</a> on GitHub
@@ -849,7 +402,7 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
 <section class="well">
   <ul id="tweets" class="nav">
     <li class="nav-header">Latest Tweets</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -868,7 +421,7 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
     <li class="nav-header">My Pinboard</li>
   </ul>
 
-  <ul id="pinboard_linkroll" class="nav">Fetching linkroll&#8230;</ul>
+  <ul id="pinboard_linkroll" class="nav">Fetching linkroll...</ul>
   <p><a href="http://pinboard.in/u:phlipper">@phlipper</a> on Pinboard</p>
 </section>
 <script type="text/javascript">
@@ -904,7 +457,7 @@ a.pin-tag {
   </ul>
 
   <ul id="cw_badges">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
 
   <a href="http://coderwall.com/phlipper">@phlipper</a> on Coderwall
@@ -973,6 +526,7 @@ _idl.variant = "banner";
 
   
 </aside>
+
 
     </div>
   </div>

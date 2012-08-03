@@ -4,7 +4,7 @@
   <title><![CDATA[phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-07-25T23:30:49-07:00</updated>
+  <updated>2012-08-03T15:31:28-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,171 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Install PostgreSQL 9.2 on OS X Mountain Lion]]></title>
+    <link href="http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/"/>
+    <updated>2012-08-03T13:08:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion</id>
+    <content type="html"><![CDATA[<p>The <a href="http://www.postgresql.org">PostgreSQL</a> database keeps getting better with each release. With 9.2 now at beta2, it&#8217;s a great time to jump in and get up to speed.</p>
+
+<h2>Prerequisites</h2>
+
+<p>This guide assumes the following:</p>
+
+<ul>
+<li>OS X Mountain Lion</li>
+<li>The latest XCode</li>
+<li>XCode Command Line Tools</li>
+<li>The latest <a href="http://www.macports.org">MacPorts</a></li>
+</ul>
+
+
+<h2>Installation</h2>
+
+<p>Make sure MacPorts is up to date, then install the <code>postgresql92-server</code> port:</p>
+
+<pre><code>$ sudo port -v selfupdate
+$ sudo port -v install postgresql92-server
+</code></pre>
+
+<h2>Setup the Initial Database</h2>
+
+<p>Once the server has been installed, you will need to create the initial database:</p>
+
+<pre><code>$ sudo mkdir -p /opt/local/var/db/postgresql92/defaultdb
+$ sudo chown postgres:postgres /opt/local/var/db/postgresql92/defaultdb
+$ sudo su postgres -c '/opt/local/lib/postgresql92/bin/initdb -D /opt/local/var/db/postgresql92/defaultdb'
+</code></pre>
+
+<h2>Starting the Server</h2>
+
+<p>Once the initial database has been created, you can start the server.</p>
+
+<p>To run the server manually, execute the following command:</p>
+
+<pre><code>$ sudo su postgres -c '/opt/local/lib/postgresql92/bin/postgres -D /opt/local/var/db/postgresql92/defaultdb'
+</code></pre>
+
+<p>If you want the server to automatically start at boot time, execute the following command:</p>
+
+<pre><code>$ sudo launchctl load -w /Library/LaunchDaemons/org.macports.postgresql92-server.plist
+</code></pre>
+
+<h2>Setup your PATH</h2>
+
+<p>The executable files for PostgreSQL are in a non-standard location, so you you&#8217;ll want to update your <code>PATH</code> to make things easier. Most likely, you&#8217;ll want to edit your <code>~/.bashrc</code> or <code>~/.zshrc</code> (or similar) profile, though you can set apply the changes for all users system-wide by editing <code>/etc/profile</code>.</p>
+
+<p>Make sure you set the new path <em>before</em> <code>/usr/bin</code> to ensure that you are using the latest versions and not the default apple-supplied tools:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/opt/local/lib/postgresql92/bin:<span class="nv">$PATH</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can verify this works by running <code>which psql</code> and you should see <code>/opt/local/lib/postgresql92/bin/psql</code> as the output.</p>
+
+<h2>Create a New User</h2>
+
+<p>You will be setup with a <code>postgres</code> user by default, but it is good practice to create a different user account.</p>
+
+<p>To make things easy, create a new database user to match your OS X username:</p>
+
+<pre><code>$ createuser --superuser &lt;my username&gt; -U postgres
+</code></pre>
+
+<p>You should now be able to create a new database:</p>
+
+<pre><code>$ createdb my_app
+</code></pre>
+
+<p>Do please consider setting a password for your newly-created user ;)</p>
+
+<h2>Configuring a Rails Application</h2>
+
+<p>To setup your Rails application with PostgreSQL, you will need to do the following:</p>
+
+<ul>
+<li>Add the <code>pg</code> gem to your <code>Gemfile</code> and run the <code>bundle</code> command</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="ss">:rubygems</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;rails&quot;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;pg&quot;</span>
+</span><span class='line'><span class="c1"># ...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Configure your <code>database.yml</code> to use PostgreSQL:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>config/database.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">unicode</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">myapp_development</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV[&quot;USER&quot;] %&gt;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">allow_concurrency</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">min_messages</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">warning</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">unicode</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">myapp_test</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV[&quot;USER&quot;] %&gt;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">allow_concurrency</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">min_messages</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">error</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Even if you have set the <code>min_messages</code> option, you may still see console output like the following:</p>
+
+<pre><code>WARNING:  there is already a transaction in progress
+</code></pre>
+
+<p>Edit the file <code>/opt/local/var/db/postgresql92/defaultdb/postgresql.conf</code> and set the following:</p>
+
+<pre><code>client_min_messages = error
+</code></pre>
+
+<p>Everything should now be running smoothly.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Upgrading to Mountain Lion - Ruby + MacPorts]]></title>
