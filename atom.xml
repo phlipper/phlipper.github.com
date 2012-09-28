@@ -4,7 +4,7 @@
   <title><![CDATA[phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-08-03T15:31:28-07:00</updated>
+  <updated>2012-09-28T02:06:31-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[FactoryGirl syntax sugar for MiniTest]]></title>
+    <link href="http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/"/>
+    <updated>2012-09-28T00:52:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest</id>
+    <content type="html"><![CDATA[<p><code>minitest</code> is a great testing library and <code>factory_girl</code> is a handy fixture replace library, especially when working with Rails.</p>
+
+<p>It can get tedious to repeat <code>FactoryGirl.</code> for every invocation of <code>build</code>, <code>create</code>, etcetera. Here is a handy shortcut to help reduce your Carpal Tunnel pain:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># for Test::Unit assertion style</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MiniTest</span><span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">FactoryGirl</span><span class="o">::</span><span class="no">Syntax</span><span class="o">::</span><span class="no">Methods</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># for Spec expectation style</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MiniTest</span><span class="o">::</span><span class="no">Spec</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">FactoryGirl</span><span class="o">::</span><span class="no">Syntax</span><span class="o">::</span><span class="no">Methods</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Place this in a file such as <code>test/support/factory_girl.rb</code>.</p>
+
+<p>This allows you to use the core set of syntax methods (<code>build</code>, <code>build_stubbed</code>, <code>create</code>, <code>attributes_for</code>, and their <code>*_list</code> counterparts) without having to call them on <code>FactoryGirl</code> directly:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Awesome</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># do this</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="n">create</span><span class="p">(</span><span class="ss">:awesome</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># don&#39;t do this</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:awesome</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install PostgreSQL 9.2 on OS X Mountain Lion]]></title>

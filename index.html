@@ -9,7 +9,7 @@
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="The PostgreSQL database keeps getting better with each release. With 9.2 now at beta2, it&#8217;s a great time to jump in and get up to speed. &hellip;">
+  <meta name="description" content="minitest is a great testing library and factory_girl is a handy fixture replace library, especially when working with Rails. It can get tedious to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +108,86 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/">FactoryGirl Syntax Sugar for MiniTest</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-28T00:52:00-07:00" pubdate data-updated="true">Sep 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>minitest</code> is a great testing library and <code>factory_girl</code> is a handy fixture replace library, especially when working with Rails.</p>
+
+<p>It can get tedious to repeat <code>FactoryGirl.</code> for every invocation of <code>build</code>, <code>create</code>, etcetera. Here is a handy shortcut to help reduce your Carpal Tunnel pain:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># for Test::Unit assertion style</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MiniTest</span><span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">FactoryGirl</span><span class="o">::</span><span class="no">Syntax</span><span class="o">::</span><span class="no">Methods</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># for Spec expectation style</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MiniTest</span><span class="o">::</span><span class="no">Spec</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">FactoryGirl</span><span class="o">::</span><span class="no">Syntax</span><span class="o">::</span><span class="no">Methods</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Place this in a file such as <code>test/support/factory_girl.rb</code>.</p>
+
+<p>This allows you to use the core set of syntax methods (<code>build</code>, <code>build_stubbed</code>, <code>create</code>, <code>attributes_for</code>, and their <code>*_list</code> counterparts) without having to call them on <code>FactoryGirl</code> directly:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Awesome</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># do this</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="n">create</span><span class="p">(</span><span class="ss">:awesome</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># don&#39;t do this</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:awesome</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -802,6 +882,10 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/">FactoryGirl syntax sugar for MiniTest</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/">Install PostgreSQL 9.2 on OS X Mountain Lion</a>
       </li>
     
@@ -815,10 +899,6 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
     
       <li class="post">
         <a href="/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/">A simple shell function to update git branches</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/">Downgrade MacPorts Boost from version 1.50.0 to 1.49.0</a>
       </li>
     
   </ul>

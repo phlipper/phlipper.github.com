@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: shell - phlipper's (dot) net</title>
+  <title>FactoryGirl syntax sugar for MiniTest - phlipper's (dot) net</title>
   <meta name="author" content="Phil Cohen">
 
   
-  <meta name="description" content="Category: shell">
+  <meta name="description" content="minitest is a great testing library and factory_girl is a handy fixture replace library, especially when working with Rails. It can get tedious to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://phlippers.netblog/categories/shell">
+  <link rel="canonical" href="http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,38 +107,133 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: Shell</h1>
+    
+      <h1 class="entry-title">FactoryGirl Syntax Sugar for MiniTest</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-28T00:52:00-07:00" pubdate data-updated="true">Sep 28<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><code>minitest</code> is a great testing library and <code>factory_girl</code> is a handy fixture replace library, especially when working with Rails.</p>
 
-  
-  <h1>2012</h1>
+<p>It can get tedious to repeat <code>FactoryGirl.</code> for every invocation of <code>build</code>, <code>create</code>, etcetera. Here is a handy shortcut to help reduce your Carpal Tunnel pain:</p>
 
-<article>
-  <div class="well">
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># for Test::Unit assertion style</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MiniTest</span><span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">FactoryGirl</span><span class="o">::</span><span class="no">Syntax</span><span class="o">::</span><span class="no">Methods</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># for Spec expectation style</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MiniTest</span><span class="o">::</span><span class="no">Spec</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">FactoryGirl</span><span class="o">::</span><span class="no">Syntax</span><span class="o">::</span><span class="no">Methods</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h2><a href="/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/">A simple shell function to update git branches</a></h2>
-<time datetime="2012-07-18T16:17:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>18</span> <span class='year'>2012</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/shell/'>shell</a></span>
-</footer>
+<p>Place this in a file such as <code>test/support/factory_girl.rb</code>.</p>
+
+<p>This allows you to use the core set of syntax methods (<code>build</code>, <code>build_stubbed</code>, <code>create</code>, <code>attributes_for</code>, and their <code>*_list</code> counterparts) without having to call them on <code>FactoryGirl</code> directly:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Awesome</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># do this</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="n">create</span><span class="p">(</span><span class="ss">:awesome</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># don&#39;t do this</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:awesome</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
-</article>
 
-</div>
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Phil Cohen</span></span>
+
+      
+
+
+
+
+
+
+
 
   
+
+
+<time datetime="2012-09-28T00:52:00-07:00" pubdate data-updated="true">Sep 28<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/factory-girl/'>factory_girl</a>, <a class='category' href='/blog/categories/minitest/'>minitest</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/" data-via="phlipper" data-counturl="http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/" title="Previous Post:
+        Install PostgreSQL 9.2 on OS X Mountain Lion">&laquo; Install PostgreSQL 9.2 on OS X Mountain Lion</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">

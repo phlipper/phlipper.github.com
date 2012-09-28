@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | phlipper's (dot) net]]></title>
   <link href="http://phlippers.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://phlippers.net/"/>
-  <updated>2012-08-03T15:31:28-07:00</updated>
+  <updated>2012-09-28T02:06:31-07:00</updated>
   <id>http://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[FactoryGirl syntax sugar for MiniTest]]></title>
+    <link href="http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/"/>
+    <updated>2012-09-28T00:52:00-07:00</updated>
+    <id>http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest</id>
+    <content type="html"><![CDATA[<p><code>minitest</code> is a great testing library and <code>factory_girl</code> is a handy fixture replace library, especially when working with Rails.</p>
+
+<p>It can get tedious to repeat <code>FactoryGirl.</code> for every invocation of <code>build</code>, <code>create</code>, etcetera. Here is a handy shortcut to help reduce your Carpal Tunnel pain:</p>
+
+<p>```ruby</p>
+
+<h1>for Test::Unit assertion style</h1>
+
+<p>class MiniTest::Rails::ActiveSupport::TestCase
+  include FactoryGirl::Syntax::Methods
+end</p>
+
+<h1>for Spec expectation style</h1>
+
+<p>class MiniTest::Spec
+  include FactoryGirl::Syntax::Methods
+end
+```</p>
+
+<p>Place this in a file such as <code>test/support/factory_girl.rb</code>.</p>
+
+<p>This allows you to use the core set of syntax methods (<code>build</code>, <code>build_stubbed</code>, <code>create</code>, <code>attributes_for</code>, and their <code>*_list</code> counterparts) without having to call them on <code>FactoryGirl</code> directly:</p>
+
+<p>```ruby
+describe Awesome do
+  # do this
+  subject { create(:awesome) }</p>
+
+<p>  # don't do this
+  subject { FactoryGirl.create(:awesome) }
+end
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Upgrading to Mountain Lion - Ruby + MacPorts]]></title>
