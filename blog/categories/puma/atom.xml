@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: puma | phlipper's (dot) net]]></title>
-  <link href="http://phlippers.net/blog/categories/puma/atom.xml" rel="self"/>
-  <link href="http://phlippers.net/"/>
-  <updated>2012-09-28T02:06:31-07:00</updated>
-  <id>http://phlippers.net/</id>
+  <link href="https://phlippers.net/blog/categories/puma/atom.xml" rel="self"/>
+  <link href="https://phlippers.net/"/>
+  <updated>2018-07-07T14:30:17-07:00</updated>
+  <id>https://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Improved concurrency for Heroku Dynos]]></title>
-    <link href="http://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos/"/>
+    <link href="https://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos/"/>
     <updated>2012-07-03T10:34:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos</id>
+    <id>https://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos</id>
     <content type="html"><![CDATA[<p>A Rack application running on <a href="http://heroku.com">Heroku</a> can improve performance by using different application servers with different performance characteristics.</p>
 
 <p>Some good choices include <a href="http://code.macournoyer.com/thin/">Thin</a> (evented I/O), <a href="http://unicorn.bogomips.org/">Unicorn</a> (multi-process) and <a href="http://puma.io/">Puma</a> (multi-threaded).</p>

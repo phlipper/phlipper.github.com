@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: homebrew | phlipper's (dot) net]]></title>
-  <link href="http://phlippers.net/blog/categories/homebrew/atom.xml" rel="self"/>
-  <link href="http://phlippers.net/"/>
-  <updated>2012-09-28T02:06:31-07:00</updated>
-  <id>http://phlippers.net/</id>
+  <link href="https://phlippers.net/blog/categories/homebrew/atom.xml" rel="self"/>
+  <link href="https://phlippers.net/"/>
+  <updated>2018-07-07T14:30:17-07:00</updated>
+  <id>https://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Fix Ruby 1.9.x OpenSSL Segfault on OS X]]></title>
-    <link href="http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/"/>
+    <link href="https://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/"/>
     <updated>2012-07-10T22:37:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x</id>
+    <id>https://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x</id>
     <content type="html"><![CDATA[<p>If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault:</p>
 
 <pre><code>~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] Segmentation fault

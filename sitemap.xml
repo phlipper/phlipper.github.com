@@ -1,59 +1,59 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos/</loc>
-        <lastmod>2012-07-11T11:01:44-07:00</lastmod>
+        <loc>https://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos/</loc>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
         <loc>
-            http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/
+            https://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/
         </loc>
-        <lastmod>2012-07-11T11:01:44-07:00</lastmod>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
         <loc>
-            http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/
+            https://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/
         </loc>
-        <lastmod>2012-07-13T00:30:46-07:00</lastmod>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
         <loc>
-            http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/
+            https://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/
         </loc>
-        <lastmod>2012-07-16T15:36:12-07:00</lastmod>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
         <loc>
-            http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/
+            https://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/
         </loc>
-        <lastmod>2012-07-18T16:38:33-07:00</lastmod>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
-        <loc>http://phlippers.net/blog/2012/07/19/support-the-internet-defense-league/</loc>
-        <lastmod>2012-07-19T10:28:00-07:00</lastmod>
+        <loc>https://phlippers.net/blog/2012/07/19/support-the-internet-defense-league/</loc>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
         <loc>
-            http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/
+            https://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/
         </loc>
-        <lastmod>2012-07-25T23:28:43-07:00</lastmod>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
         <loc>
-            http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/
+            https://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/
         </loc>
-        <lastmod>2012-08-03T15:30:09-07:00</lastmod>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
-        <loc>http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/</loc>
-        <lastmod>2012-09-28T01:36:50-07:00</lastmod>
+        <loc>https://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/</loc>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
-        <loc>http://phlippers.net/blog/archives/</loc>
-        <lastmod>2012-09-28T01:36:50-07:00</lastmod>
+        <loc>https://phlippers.net/</loc>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
     <url>
-        <loc>http://phlippers.net/</loc>
-        <lastmod>2012-09-28T01:36:50-07:00</lastmod>
+        <loc>https://phlippers.net/blog/archives/</loc>
+        <lastmod>2018-07-07T14:07:35-07:00</lastmod>
     </url>
 </urlset>

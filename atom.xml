@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[phlipper's (dot) net]]></title>
-  <link href="http://phlippers.net/atom.xml" rel="self"/>
-  <link href="http://phlippers.net/"/>
-  <updated>2012-09-28T02:06:31-07:00</updated>
-  <id>http://phlippers.net/</id>
+  <link href="https://phlippers.net/atom.xml" rel="self"/>
+  <link href="https://phlippers.net/"/>
+  <updated>2018-07-07T14:30:17-07:00</updated>
+  <id>https://phlippers.net/</id>
   <author>
     <name><![CDATA[Phil Cohen]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[FactoryGirl syntax sugar for MiniTest]]></title>
-    <link href="http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/"/>
+    <link href="https://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest/"/>
     <updated>2012-09-28T00:52:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest</id>
+    <id>https://phlippers.net/blog/2012/09/28/factorygirl-syntax-sugar-for-minitest</id>
     <content type="html"><![CDATA[<p><code>minitest</code> is a great testing library and <code>factory_girl</code> is a handy fixture replace library, especially when working with Rails.</p>
 
 <p>It can get tedious to repeat <code>FactoryGirl.</code> for every invocation of <code>build</code>, <code>create</code>, etcetera. Here is a handy shortcut to help reduce your Carpal Tunnel pain:</p>
@@ -68,9 +68,9 @@
   
   <entry>
     <title type="html"><![CDATA[Install PostgreSQL 9.2 on OS X Mountain Lion]]></title>
-    <link href="http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/"/>
+    <link href="https://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion/"/>
     <updated>2012-08-03T13:08:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion</id>
+    <id>https://phlippers.net/blog/2012/08/03/install-postgresql-9-dot-2-on-os-x-mountain-lion</id>
     <content type="html"><![CDATA[<p>The <a href="http://www.postgresql.org">PostgreSQL</a> database keeps getting better with each release. With 9.2 now at beta2, it&#8217;s a great time to jump in and get up to speed.</p>
 
 <h2>Prerequisites</h2>
@@ -233,9 +233,9 @@ $ sudo su postgres -c '/opt/local/lib/postgresql92/bin/initdb -D /opt/local/var/
   
   <entry>
     <title type="html"><![CDATA[Upgrading to Mountain Lion - Ruby + MacPorts]]></title>
-    <link href="http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/"/>
+    <link href="https://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports/"/>
     <updated>2012-07-25T23:25:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports</id>
+    <id>https://phlippers.net/blog/2012/07/25/upgrading-to-mountain-lion-ruby-plus-macports</id>
     <content type="html"><![CDATA[<p>My colleague Kenny Johnston wrote a nice piece about <a href="http://coderwall.com/p/dtbuqg">Upgrading to Mountain Lion</a> with an emphasis on using Homebrew. Here are the relevant steps using MacPorts:</p>
 
 <h2>XCode:</h2>
@@ -311,9 +311,9 @@ rvm reinstall rbx
   
   <entry>
     <title type="html"><![CDATA[Support the Internet Defense League]]></title>
-    <link href="http://phlippers.net/blog/2012/07/19/support-the-internet-defense-league/"/>
+    <link href="https://phlippers.net/blog/2012/07/19/support-the-internet-defense-league/"/>
     <updated>2012-07-19T10:27:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/19/support-the-internet-defense-league</id>
+    <id>https://phlippers.net/blog/2012/07/19/support-the-internet-defense-league</id>
     <content type="html"><![CDATA[<p>The <a href="http://internetdefenseleague.org/">Internet Defense League</a> is a network of people and sites who use their massive combined reach to defend the open internet and make it better. Because it can sound the alarm quickly to millions of users, people are calling it “a bat-signal for the Internet”.</p>
 
 <p>The Internet Defense League takes the tactic that killed SOPA &amp; PIPA and turns it into a permanent force for defending the internet, and making it better. Think of it like the internet&#8217;s Emergency Broadcast System, or its bat signal!</p>
@@ -324,9 +324,9 @@ rvm reinstall rbx
   
   <entry>
     <title type="html"><![CDATA[A simple shell function to update git branches]]></title>
-    <link href="http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/"/>
+    <link href="https://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches/"/>
     <updated>2012-07-18T16:17:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches</id>
+    <id>https://phlippers.net/blog/2012/07/18/a-simple-shell-function-to-update-git-branches</id>
     <content type="html"><![CDATA[<p>A client of mine was having a hard time remembering the project workflow to keep topic branches updated, so I put together this simple shell function as a workflow reference:</p>
 
 <figure class='code'><figcaption><span>git-sync-master</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -371,9 +371,9 @@ $ git sync-master mybranch
   
   <entry>
     <title type="html"><![CDATA[Downgrade MacPorts Boost from version 1.50.0 to 1.49.0]]></title>
-    <link href="http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/"/>
+    <link href="https://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0/"/>
     <updated>2012-07-16T15:27:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0</id>
+    <id>https://phlippers.net/blog/2012/07/16/downgrade-macports-boost-version-1-dot-50-dot-0</id>
     <content type="html"><![CDATA[<p>If you have updated <a href="http://www.boost.org/">Boost</a> to version 1.50.0 via MacPorts, you may have encountered something like the following:</p>
 
 <pre><code>$ port installed | grep mongodb
@@ -425,9 +425,9 @@ $ sudo port activate boost @1.49.0_0
   
   <entry>
     <title type="html"><![CDATA[MySQL gem 2.7 with Ruby 1.8.7 and MacPorts]]></title>
-    <link href="http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/"/>
+    <link href="https://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports/"/>
     <updated>2012-07-12T13:37:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports</id>
+    <id>https://phlippers.net/blog/2012/07/12/mysql-gem-2-dot-7-with-ruby-1-dot-8-7-and-macports</id>
     <content type="html"><![CDATA[<p>I recently had to reinstall the <code>mysql</code> gem version 2.7 in to following environment:</p>
 
 <ul>
@@ -448,9 +448,9 @@ $ sudo port activate boost @1.49.0_0
   
   <entry>
     <title type="html"><![CDATA[Fix Ruby 1.9.x OpenSSL Segfault on OS X]]></title>
-    <link href="http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/"/>
+    <link href="https://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x/"/>
     <updated>2012-07-10T22:37:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x</id>
+    <id>https://phlippers.net/blog/2012/07/10/fix-ruby-1-dot-9-x-openssl-segfault-on-os-x</id>
     <content type="html"><![CDATA[<p>If you install Ruby 1.9.2 or 1.9.3 on OS X, you may run in to the dreaded OpenSSL segfault:</p>
 
 <pre><code>~/ruby-1.9.3-p194/lib/ruby/1.9.1/net/http.rb:799: [BUG] Segmentation fault
@@ -496,9 +496,9 @@ $ rvm reinstall 1.9.3 --with-openssl-dir=$rvm_path/usr
   
   <entry>
     <title type="html"><![CDATA[Improved concurrency for Heroku Dynos]]></title>
-    <link href="http://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos/"/>
+    <link href="https://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos/"/>
     <updated>2012-07-03T10:34:00-07:00</updated>
-    <id>http://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos</id>
+    <id>https://phlippers.net/blog/2012/07/03/improved-concurrency-for-heroku-dynos</id>
     <content type="html"><![CDATA[<p>A Rack application running on <a href="http://heroku.com">Heroku</a> can improve performance by using different application servers with different performance characteristics.</p>
 
 <p>Some good choices include <a href="http://code.macournoyer.com/thin/">Thin</a> (evented I/O), <a href="http://unicorn.bogomips.org/">Unicorn</a> (multi-process) and <a href="http://puma.io/">Puma</a> (multi-threaded).</p>
